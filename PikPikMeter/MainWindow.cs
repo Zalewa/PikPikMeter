@@ -169,7 +169,8 @@ namespace PikPikMeter
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			About about = new About();
-			about.ShowDialog();
+			about.StartPosition = FormStartPosition.CenterParent;
+			about.ShowDialog(this);
 		}
 
 		private void trayIcon_MouseDown(object sender, MouseEventArgs e)
@@ -205,7 +206,8 @@ namespace PikPikMeter
 					ValueTitle = "Set graph scale (allowed units: GB, MB, KB, Gb, Mb, Kb):",
 					Value = scale
 				};
-				if (askValueDialog.ShowDialog() == DialogResult.OK)
+				askValueDialog.StartPosition = FormStartPosition.CenterParent;
+				if (askValueDialog.ShowDialog(this) == DialogResult.OK)
 				{
 					TrafficUnitValue trafficScale;
 					try
