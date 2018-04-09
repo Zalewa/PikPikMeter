@@ -24,6 +24,7 @@
 			this.setScaleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.graphOnTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.stayOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.startWithSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,12 +37,14 @@
 			this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
 			this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
 			this.GraphPanel = new System.Windows.Forms.Panel();
-			this.startWithSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.OpacityTrackBar = new System.Windows.Forms.TrackBar();
+			this.setOpacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.GraphBox)).BeginInit();
 			this.mainContextMenu.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.resizer)).BeginInit();
 			this.GraphPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.OpacityTrackBar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// GraphBox
@@ -62,6 +65,7 @@
 			// 
 			this.mainContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setScaleMenuItem,
+            this.setOpacityToolStripMenuItem,
             this.graphOnTrayToolStripMenuItem,
             this.stayOnTopToolStripMenuItem,
             this.startWithSystemToolStripMenuItem,
@@ -98,6 +102,14 @@
 			this.stayOnTopToolStripMenuItem.Text = "Stay on &top";
 			this.stayOnTopToolStripMenuItem.Click += new System.EventHandler(this.stayOnTopToolStripMenuItem_Click);
 			// 
+			// startWithSystemToolStripMenuItem
+			// 
+			this.startWithSystemToolStripMenuItem.CheckOnClick = true;
+			this.startWithSystemToolStripMenuItem.Name = "startWithSystemToolStripMenuItem";
+			this.startWithSystemToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.startWithSystemToolStripMenuItem.Text = "Sta&rt with system";
+			this.startWithSystemToolStripMenuItem.Click += new System.EventHandler(this.startWithSystemToolStripMenuItem_Click);
+			// 
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -119,7 +131,6 @@
 			// 
 			// panel1
 			// 
-			this.panel1.AutoSize = true;
 			this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.panel1.BackColor = System.Drawing.Color.SteelBlue;
 			this.panel1.ContextMenuStrip = this.mainContextMenu;
@@ -128,6 +139,7 @@
 			this.panel1.Controls.Add(this.LbLDownloadTotal);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.resizer);
+			this.panel1.Controls.Add(this.OpacityTrackBar);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel1.Location = new System.Drawing.Point(1, 104);
 			this.panel1.MinimumSize = new System.Drawing.Size(0, 20);
@@ -216,13 +228,29 @@
 			this.GraphPanel.TabIndex = 2;
 			this.GraphPanel.Resize += new System.EventHandler(this.GraphPanel_Resize);
 			// 
-			// startWithSystemToolStripMenuItem
+			// OpacityTrackBar
 			// 
-			this.startWithSystemToolStripMenuItem.CheckOnClick = true;
-			this.startWithSystemToolStripMenuItem.Name = "startWithSystemToolStripMenuItem";
-			this.startWithSystemToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-			this.startWithSystemToolStripMenuItem.Text = "Sta&rt with system";
-			this.startWithSystemToolStripMenuItem.Click += new System.EventHandler(this.startWithSystemToolStripMenuItem_Click);
+			this.OpacityTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.OpacityTrackBar.AutoSize = false;
+			this.OpacityTrackBar.Location = new System.Drawing.Point(0, 0);
+			this.OpacityTrackBar.Maximum = 500;
+			this.OpacityTrackBar.Minimum = 100;
+			this.OpacityTrackBar.Name = "OpacityTrackBar";
+			this.OpacityTrackBar.Size = new System.Drawing.Size(268, 23);
+			this.OpacityTrackBar.TabIndex = 2;
+			this.OpacityTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.OpacityTrackBar.Value = 100;
+			this.OpacityTrackBar.Visible = false;
+			this.OpacityTrackBar.Scroll += new System.EventHandler(this.OpacityTrackBar_Scroll);
+			// 
+			// setOpacityToolStripMenuItem
+			// 
+			this.setOpacityToolStripMenuItem.CheckOnClick = true;
+			this.setOpacityToolStripMenuItem.Name = "setOpacityToolStripMenuItem";
+			this.setOpacityToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.setOpacityToolStripMenuItem.Text = "Set &opacity";
+			this.setOpacityToolStripMenuItem.Click += new System.EventHandler(this.setOpacityToolStripMenuItem_Click);
 			// 
 			// MainWindow
 			// 
@@ -253,6 +281,7 @@
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.resizer)).EndInit();
 			this.GraphPanel.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.OpacityTrackBar)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -278,6 +307,8 @@
 		private System.Windows.Forms.Panel GraphPanel;
 		private System.Windows.Forms.ToolStripMenuItem graphOnTrayToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem startWithSystemToolStripMenuItem;
+		private System.Windows.Forms.TrackBar OpacityTrackBar;
+		private System.Windows.Forms.ToolStripMenuItem setOpacityToolStripMenuItem;
 	}
 }
 

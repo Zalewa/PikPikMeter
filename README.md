@@ -25,6 +25,7 @@ Reasons to use PikPikMeter
 * Scalable graph.
 * Bits or bytes scale.
 * Giga, Mega, Kilo -bytes/-bits scale.
+* Can set opacity.
 * Doesn't crash when networking interfaces go down.
 * Has a stupid name that immediately rings a bell.
 

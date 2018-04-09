@@ -24,6 +24,11 @@ namespace PikPikMeter
 			InitializeComponent();
 		}
 
+		private double MinimumOpacity
+		{
+			get { return OpacityTrackBar.Minimum / (double)OpacityTrackBar.Maximum; }
+		}
+
 		private void LoadSettings()
 		{
 			Point location = Settings.Default.WindowLocation;
@@ -40,6 +45,7 @@ namespace PikPikMeter
 			TrafficMonitor.GraphOnIcon = Settings.Default.GraphOnTray;
 			this.graphOnTrayToolStripMenuItem.Checked = Settings.Default.GraphOnTray;
 			this.startWithSystemToolStripMenuItem.Checked = SystemStart.On;
+			this.Opacity = Math.Max(MinimumOpacity, Settings.Default.Opacity);
 		}
 
 		private void SaveSettings()
@@ -52,6 +58,7 @@ namespace PikPikMeter
 			Settings.Default.ScaleFactor = TrafficMonitor.GraphPaint.Scale.Value;
 			Settings.Default.Bits = TrafficMonitor.GraphPaint.Scale.InBits;
 			Settings.Default.GraphOnTray = TrafficMonitor.GraphOnIcon;
+			Settings.Default.Opacity = this.Opacity;
 			Settings.Default.Save();
 		}
 
@@ -252,6 +259,26 @@ namespace PikPikMeter
 		private void GraphPanel_Resize(object sender, EventArgs e)
 		{
 			GraphBox.Size = GraphPanel.Size;
+		}
+
+		private void setOpacityToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.setOpacityToolStripMenuItem.Checked)
+			{
+				OpacityTrackBar.Value = (int)(this.Opacity * OpacityTrackBar.Maximum);
+				OpacityTrackBar.Visible = true;
+				OpacityTrackBar.BringToFront();
+			}
+			else
+			{
+				OpacityTrackBar.Visible = false;
+			}
+		}
+
+		private void OpacityTrackBar_Scroll(object sender, EventArgs e)
+		{
+			this.Opacity = OpacityTrackBar.Value / (double) OpacityTrackBar.Maximum;
+			Settings.Default.Opacity = this.Opacity;
 		}
 	}
 }
