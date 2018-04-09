@@ -34,6 +34,7 @@
 			this.LabelEgg = new System.Windows.Forms.Label();
 			this.ButtonClose = new System.Windows.Forms.Button();
 			this.CopyrightBox = new System.Windows.Forms.TextBox();
+			this.LabelBackLink = new System.Windows.Forms.LinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.IconBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -55,7 +56,7 @@
 			// 
 			this.LabelName.AutoSize = true;
 			this.LabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.LabelName.Location = new System.Drawing.Point(14, 12);
+			this.LabelName.Location = new System.Drawing.Point(7, 5);
 			this.LabelName.Name = "LabelName";
 			this.LabelName.Size = new System.Drawing.Size(321, 25);
 			this.LabelName.TabIndex = 1;
@@ -98,12 +99,24 @@
 			this.CopyrightBox.TabIndex = 5;
 			this.CopyrightBox.Text = "soft pisses you off.";
 			// 
+			// LabelBackLink
+			// 
+			this.LabelBackLink.AutoSize = true;
+			this.LabelBackLink.Location = new System.Drawing.Point(13, 30);
+			this.LabelBackLink.Name = "LabelBackLink";
+			this.LabelBackLink.Size = new System.Drawing.Size(197, 13);
+			this.LabelBackLink.TabIndex = 6;
+			this.LabelBackLink.TabStop = true;
+			this.LabelBackLink.Text = "https://github.com/Zalewa/PikPikMeter";
+			this.LabelBackLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LabelBackLink_LinkClicked);
+			// 
 			// About
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.ButtonClose;
 			this.ClientSize = new System.Drawing.Size(495, 362);
+			this.Controls.Add(this.LabelBackLink);
 			this.Controls.Add(this.CopyrightBox);
 			this.Controls.Add(this.ButtonClose);
 			this.Controls.Add(this.LabelEgg);
@@ -130,5 +143,6 @@
 		private System.Windows.Forms.Label LabelEgg;
 		private System.Windows.Forms.Button ButtonClose;
 		private System.Windows.Forms.TextBox CopyrightBox;
+		private System.Windows.Forms.LinkLabel LabelBackLink;
 	}
 }
