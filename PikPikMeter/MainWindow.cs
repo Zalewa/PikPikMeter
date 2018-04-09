@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,6 +39,7 @@ namespace PikPikMeter
 			this.stayOnTopToolStripMenuItem.Checked = Settings.Default.TopMost;
 			TrafficMonitor.GraphOnIcon = Settings.Default.GraphOnTray;
 			this.graphOnTrayToolStripMenuItem.Checked = Settings.Default.GraphOnTray;
+			this.startWithSystemToolStripMenuItem.Checked = SystemStart.On;
 		}
 
 		private void SaveSettings()
@@ -229,6 +231,22 @@ namespace PikPikMeter
 			bool flag = graphOnTrayToolStripMenuItem.Checked;
 			TrafficMonitor.GraphOnIcon = flag;
 			Settings.Default.GraphOnTray = flag;
+		}
+
+		private void startWithSystemToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				SystemStart.On = this.startWithSystemToolStripMenuItem.Checked;
+				// Get the factual state.
+				this.startWithSystemToolStripMenuItem.Checked = SystemStart.On;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Can't set up PikPikMeter to start with system, " +
+					"try running PikPikMeter as an Administrator.\n" +
+					"Reason: " + ex.Message);
+			}
 		}
 
 		private void GraphPanel_Resize(object sender, EventArgs e)

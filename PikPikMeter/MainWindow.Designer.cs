@@ -22,6 +22,7 @@
 			this.GraphBox = new System.Windows.Forms.PictureBox();
 			this.mainContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.setScaleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.graphOnTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.stayOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -35,7 +36,7 @@
 			this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
 			this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
 			this.GraphPanel = new System.Windows.Forms.Panel();
-			this.graphOnTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.startWithSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.GraphBox)).BeginInit();
 			this.mainContextMenu.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -63,18 +64,29 @@
             this.setScaleMenuItem,
             this.graphOnTrayToolStripMenuItem,
             this.stayOnTopToolStripMenuItem,
+            this.startWithSystemToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.toolStripSeparator1,
             this.quitToolStripMenuItem});
 			this.mainContextMenu.Name = "contextMenuStrip1";
-			this.mainContextMenu.Size = new System.Drawing.Size(153, 142);
+			this.mainContextMenu.Size = new System.Drawing.Size(165, 164);
 			// 
 			// setScaleMenuItem
 			// 
 			this.setScaleMenuItem.Name = "setScaleMenuItem";
-			this.setScaleMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.setScaleMenuItem.Size = new System.Drawing.Size(164, 22);
 			this.setScaleMenuItem.Text = "&Set scale";
 			this.setScaleMenuItem.Click += new System.EventHandler(this.setScaleMenuItem_Click);
+			// 
+			// graphOnTrayToolStripMenuItem
+			// 
+			this.graphOnTrayToolStripMenuItem.Checked = true;
+			this.graphOnTrayToolStripMenuItem.CheckOnClick = true;
+			this.graphOnTrayToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.graphOnTrayToolStripMenuItem.Name = "graphOnTrayToolStripMenuItem";
+			this.graphOnTrayToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.graphOnTrayToolStripMenuItem.Text = "&Graph on tray";
+			this.graphOnTrayToolStripMenuItem.Click += new System.EventHandler(this.graphOnTrayToolStripMenuItem_Click);
 			// 
 			// stayOnTopToolStripMenuItem
 			// 
@@ -82,26 +94,26 @@
 			this.stayOnTopToolStripMenuItem.CheckOnClick = true;
 			this.stayOnTopToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.stayOnTopToolStripMenuItem.Name = "stayOnTopToolStripMenuItem";
-			this.stayOnTopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.stayOnTopToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
 			this.stayOnTopToolStripMenuItem.Text = "Stay on &top";
 			this.stayOnTopToolStripMenuItem.Click += new System.EventHandler(this.stayOnTopToolStripMenuItem_Click);
 			// 
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
 			this.aboutToolStripMenuItem.Text = "&About";
 			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
 			// 
 			// quitToolStripMenuItem
 			// 
 			this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-			this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.quitToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
 			this.quitToolStripMenuItem.Text = "&Quit";
 			this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
 			// 
@@ -204,15 +216,13 @@
 			this.GraphPanel.TabIndex = 2;
 			this.GraphPanel.Resize += new System.EventHandler(this.GraphPanel_Resize);
 			// 
-			// graphOnTrayToolStripMenuItem
+			// startWithSystemToolStripMenuItem
 			// 
-			this.graphOnTrayToolStripMenuItem.Checked = true;
-			this.graphOnTrayToolStripMenuItem.CheckOnClick = true;
-			this.graphOnTrayToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.graphOnTrayToolStripMenuItem.Name = "graphOnTrayToolStripMenuItem";
-			this.graphOnTrayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.graphOnTrayToolStripMenuItem.Text = "&Graph on tray";
-			this.graphOnTrayToolStripMenuItem.Click += new System.EventHandler(this.graphOnTrayToolStripMenuItem_Click);
+			this.startWithSystemToolStripMenuItem.CheckOnClick = true;
+			this.startWithSystemToolStripMenuItem.Name = "startWithSystemToolStripMenuItem";
+			this.startWithSystemToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.startWithSystemToolStripMenuItem.Text = "Sta&rt with system";
+			this.startWithSystemToolStripMenuItem.Click += new System.EventHandler(this.startWithSystemToolStripMenuItem_Click);
 			// 
 			// MainWindow
 			// 
@@ -267,6 +277,7 @@
 		private System.Windows.Forms.ToolStripMenuItem stayOnTopToolStripMenuItem;
 		private System.Windows.Forms.Panel GraphPanel;
 		private System.Windows.Forms.ToolStripMenuItem graphOnTrayToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem startWithSystemToolStripMenuItem;
 	}
 }
 

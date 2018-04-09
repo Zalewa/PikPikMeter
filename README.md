@@ -17,8 +17,11 @@ Reasons to use PikPikMeter
 * Open-Source (BSD 2-clause).
 * Just one .exe.
 * Just one XML config file.
+* Paints graph.
 * Stays on tray.
-* Can stay on top.
+* Paints graph on tray.
+* Can stay on top of other windows.
+* Can start with system.
 * Scalable graph.
 * Bits or bytes scale.
 * Giga, Mega, Kilo -bytes/-bits scale.

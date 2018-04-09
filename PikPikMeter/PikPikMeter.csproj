@@ -76,6 +76,7 @@
     <Compile Include="AskValue.Designer.cs">
       <DependentUpon>AskValue.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemStart.cs" />
     <Compile Include="TrafficGraphPaint.cs" />
     <Compile Include="History.cs" />
     <Compile Include="TrafficMasterMonitor.cs" />
