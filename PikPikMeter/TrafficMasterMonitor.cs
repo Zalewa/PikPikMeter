@@ -57,6 +57,11 @@ namespace PikPikMeter
 		{
 			List<TrafficNicMeasure> measures = TrafficGrabber.GrabMeasures();
 			TrafficStat.Add(measures);
+			Repaint();
+		}
+
+		public void Repaint()
+		{
 			if (Display.Graph != null)
 			{
 				GraphPaint.Paint(Display.Graph, TrafficStat);

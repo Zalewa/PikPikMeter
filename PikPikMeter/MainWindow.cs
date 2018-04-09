@@ -231,6 +231,7 @@ namespace PikPikMeter
 				}
 				break;
 			}
+			TrafficMonitor.Repaint();
 		}
 
 		private void stayOnTopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -245,6 +246,7 @@ namespace PikPikMeter
 			bool flag = graphOnTrayToolStripMenuItem.Checked;
 			TrafficMonitor.GraphOnIcon = flag;
 			Settings.Default.GraphOnTray = flag;
+			TrafficMonitor.Repaint();
 		}
 
 		private void startWithSystemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -266,6 +268,7 @@ namespace PikPikMeter
 		private void GraphPanel_Resize(object sender, EventArgs e)
 		{
 			GraphBox.Size = GraphPanel.Size;
+			TrafficMonitor.Repaint();
 		}
 
 		private void setOpacityToolStripMenuItem_Click(object sender, EventArgs e)
@@ -334,6 +337,7 @@ namespace PikPikMeter
 					Settings.Default.DisabledNics.Add(nic);
 			}
 			TrafficMonitor.SetNicEnabled(nic, item.Checked);
+			TrafficMonitor.Repaint();
 		}
 	}
 }
