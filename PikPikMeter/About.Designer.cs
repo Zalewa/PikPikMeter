@@ -75,6 +75,7 @@
 			// 
 			// ButtonClose
 			// 
+			this.ButtonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.ButtonClose.Location = new System.Drawing.Point(408, 327);
 			this.ButtonClose.Name = "ButtonClose";
 			this.ButtonClose.Size = new System.Drawing.Size(75, 23);
@@ -101,6 +102,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.CancelButton = this.ButtonClose;
 			this.ClientSize = new System.Drawing.Size(495, 362);
 			this.Controls.Add(this.CopyrightBox);
 			this.Controls.Add(this.ButtonClose);
