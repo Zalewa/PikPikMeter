@@ -5,6 +5,8 @@ PikPikMeter is a network traffic meter program for MS Windows that shows
 current network traffic (upload and download speed) and paints traffic
 graph from it showing the most recent history. That's it. Nothing else.
 
+![Screenshot](screen1.jpg)
+
 Reasons to use PikPikMeter
 --------------------------
 
