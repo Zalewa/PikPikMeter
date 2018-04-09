@@ -7,6 +7,19 @@ graph from it showing the most recent history. That's it. Nothing else.
 
 ![Screenshot](screen1.jpg)
 
+Configuration
+-------------
+
+Config file is stored in
+
+```
+%LOCALAPPDATA%/PikPikMeter/PikPikMeter_<random>/<version>/
+```
+
+As there's no uninstaller (or installer, for that matter) for
+PikPikMeter, to fully manually uninstall, remove the .exe file
+and this config directory must be removed as well.
+
 Reasons to use PikPikMeter
 --------------------------
 
