@@ -93,14 +93,16 @@ namespace PikPikMeter
 		private string TotalText(Stat stat)
 		{
 			float[] totals = TrafficStat.Total(stat, TotalsAverageCount);
-			bool bits = GraphPaint.Scale.InBits; // TODO bad programming practice, code smell.
-			float average = totals.Average();
-			if (bits)
-				average *= 8.0f;
-			var trafficValue = new TrafficUnitValue(average, bits);
-			return (totals.Length > 0) ?
-				TrafficUnit.Humanize(trafficValue) + "/s" :
-				"N/A";
+			if (totals.Length > 0)
+			{
+				bool bits = GraphPaint.Scale.InBits; // TODO bad programming practice, code smell.
+				float average = totals.Average();
+				if (bits)
+					average *= 8.0f;
+				var trafficValue = new TrafficUnitValue(average, bits);
+				return TrafficUnit.Humanize(trafficValue) + "/s";
+			}
+			return "N/A";
 		}
 	}
 }
