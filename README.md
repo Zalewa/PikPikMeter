@@ -26,6 +26,7 @@ Reasons to use PikPikMeter
 * Bits or bytes scale.
 * Giga, Mega, Kilo -bytes/-bits scale.
 * Can set opacity.
+* Can disable measure on each Network Interface separately.
 * Doesn't crash when networking interfaces go down.
 * Has a stupid name that immediately rings a bell.
 

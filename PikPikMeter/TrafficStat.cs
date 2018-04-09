@@ -14,6 +14,7 @@ namespace PikPikMeter
 
 	public class TrafficStat
 	{
+		private HashSet<string> DisabledNics = new HashSet<string>();
 		private History<StatMeasure> measures;
 
 		public TrafficStat(int historySize = 10000)
@@ -23,13 +24,16 @@ namespace PikPikMeter
 
 		public void Add(List<TrafficNicMeasure> measures)
 		{
-			var measure = new StatMeasure()
-			{
-				NicMeasures = measures,
-				TotalDownload = measures.Sum(e => e.DownloadBytesPerSec),
-				TotalUpload = measures.Sum(e => e.UploadBytesPerSec)
-			};
-			this.measures.Add(measure);
+			this.measures.Add(CalculateStatMeasure(measures));
+		}
+
+		public void SetNicEnabled(string nic, bool enabled)
+		{
+			if (enabled)
+				DisabledNics.Remove(nic);
+			else
+				DisabledNics.Add(nic);
+			RecalculateAllStatMeasures();
 		}
 
 		public float[] Total(Stat stat, int amount)
@@ -59,6 +63,25 @@ namespace PikPikMeter
 					break;
 			}
 			return totals;
+		}
+
+		private void RecalculateAllStatMeasures()
+		{
+			var newMeasures = new History<StatMeasure>(this.measures.Limit);
+			foreach (var measure in measures.Elements.Reverse())
+				newMeasures.Add(CalculateStatMeasure(measure.NicMeasures));
+			this.measures = newMeasures;
+		}
+
+		private StatMeasure CalculateStatMeasure(List<TrafficNicMeasure> trafficMeasures)
+		{
+			var enabledMeasures = trafficMeasures.FindAll(m => !DisabledNics.Contains(m.Nic));
+			return new StatMeasure()
+			{
+				NicMeasures = trafficMeasures,
+				TotalDownload = enabledMeasures.Sum(e => e.DownloadBytesPerSec),
+				TotalUpload = enabledMeasures.Sum(e => e.UploadBytesPerSec)
+			};
 		}
 	}
 

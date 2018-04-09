@@ -80,6 +80,11 @@ namespace PikPikMeter
 			}
 		}
 
+		public void SetNicEnabled(string nic, bool enabled)
+		{
+			TrafficStat.SetNicEnabled(nic, enabled);
+		}
+
 		private string TotalText(Stat stat)
 		{
 			float[] totals = TrafficStat.Total(stat, TotalsAverageCount);

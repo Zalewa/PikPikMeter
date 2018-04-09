@@ -20,6 +20,17 @@ namespace PikPikMeter
 			this.ulCounter = CreateCounter("Bytes Sent/sec");
 		}
 
+		/// <summary>
+		/// All Network Interface Controllers currently available in the system.
+		/// </summary>
+		public static string[] Nics
+		{
+			get
+			{
+				return new PerformanceCounterCategory("Network Interface").GetInstanceNames();
+			}
+		}
+
 		public string Nic { get { return nic; } }
 
 		public TrafficNicMeasure Measure()

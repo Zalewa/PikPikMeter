@@ -46,6 +46,11 @@ namespace PikPikMeter
 			this.graphOnTrayToolStripMenuItem.Checked = Settings.Default.GraphOnTray;
 			this.startWithSystemToolStripMenuItem.Checked = SystemStart.On;
 			this.Opacity = Math.Max(MinimumOpacity, Settings.Default.Opacity);
+
+			if (Settings.Default.DisabledNics == null)
+				Settings.Default.DisabledNics = new System.Collections.Specialized.StringCollection();
+			foreach (string disabledNic in Settings.Default.DisabledNics)
+				TrafficMonitor.SetNicEnabled(disabledNic, false);
 		}
 
 		private void SaveSettings()
@@ -281,6 +286,54 @@ namespace PikPikMeter
 		{
 			this.Opacity = OpacityTrackBar.Value / (double) OpacityTrackBar.Maximum;
 			Settings.Default.Opacity = this.Opacity;
+		}
+
+		private void interfacesToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+		{
+			var items = new ToolStripItem[interfacesToolStripMenuItem.DropDownItems.Count];
+			interfacesToolStripMenuItem.DropDownItems.CopyTo(items, 0);
+			foreach (var item in items)
+			{
+				if (item != noNicsToolStripMenuItem)
+					interfacesToolStripMenuItem.DropDownItems.Remove(item);
+			}
+			noNicsToolStripMenuItem.Visible = true;
+
+			string[] nics;
+			try
+			{
+				nics = TrafficNic.Nics;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Cannot obtain NICs from system: " + ex.Message);
+				return;
+			}
+			noNicsToolStripMenuItem.Visible = (nics.Length == 0);
+			foreach (string nic in nics)
+			{
+				var nicItem = new ToolStripMenuItem(nic);
+				nicItem.CheckOnClick = true;
+				nicItem.Checked = !Settings.Default.DisabledNics.Contains(nic);
+				nicItem.Click += NicItem_Click;
+				interfacesToolStripMenuItem.DropDownItems.Add(nicItem);
+			}
+		}
+
+		private void NicItem_Click(object sender, EventArgs e)
+		{
+			var item = sender as ToolStripMenuItem;
+			string nic = item.Text;
+			if (item.Checked)
+			{
+				Settings.Default.DisabledNics.Remove(nic);
+			}
+			else
+			{
+				if (!Settings.Default.DisabledNics.Contains(nic))
+					Settings.Default.DisabledNics.Add(nic);
+			}
+			TrafficMonitor.SetNicEnabled(nic, item.Checked);
 		}
 	}
 }

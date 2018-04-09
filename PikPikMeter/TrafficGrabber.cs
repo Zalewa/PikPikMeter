@@ -20,7 +20,7 @@ namespace PikPikMeter
 		{
 			// Network Interfaces can come and go during normal OS operation.
 			var nics = new List<TrafficNic>();
-			foreach (string nic in new PerformanceCounterCategory("Network Interface").GetInstanceNames())
+			foreach (string nic in TrafficNic.Nics)
 			{
 				nics.Add(new TrafficNic(nic));
 			}

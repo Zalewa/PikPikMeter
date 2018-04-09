@@ -39,6 +39,8 @@
 			this.GraphPanel = new System.Windows.Forms.Panel();
 			this.OpacityTrackBar = new System.Windows.Forms.TrackBar();
 			this.setOpacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.interfacesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.noNicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.GraphBox)).BeginInit();
 			this.mainContextMenu.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -69,11 +71,12 @@
             this.graphOnTrayToolStripMenuItem,
             this.stayOnTopToolStripMenuItem,
             this.startWithSystemToolStripMenuItem,
+            this.interfacesToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.toolStripSeparator1,
             this.quitToolStripMenuItem});
 			this.mainContextMenu.Name = "contextMenuStrip1";
-			this.mainContextMenu.Size = new System.Drawing.Size(165, 164);
+			this.mainContextMenu.Size = new System.Drawing.Size(165, 208);
 			// 
 			// setScaleMenuItem
 			// 
@@ -252,6 +255,22 @@
 			this.setOpacityToolStripMenuItem.Text = "Set &opacity";
 			this.setOpacityToolStripMenuItem.Click += new System.EventHandler(this.setOpacityToolStripMenuItem_Click);
 			// 
+			// interfacesToolStripMenuItem
+			// 
+			this.interfacesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.noNicsToolStripMenuItem});
+			this.interfacesToolStripMenuItem.Name = "interfacesToolStripMenuItem";
+			this.interfacesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.interfacesToolStripMenuItem.Text = "&Interfaces";
+			this.interfacesToolStripMenuItem.DropDownOpening += new System.EventHandler(this.interfacesToolStripMenuItem_DropDownOpening);
+			// 
+			// noNicsToolStripMenuItem
+			// 
+			this.noNicsToolStripMenuItem.Enabled = false;
+			this.noNicsToolStripMenuItem.Name = "noNicsToolStripMenuItem";
+			this.noNicsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.noNicsToolStripMenuItem.Text = "No NICs";
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,6 +328,8 @@
 		private System.Windows.Forms.ToolStripMenuItem startWithSystemToolStripMenuItem;
 		private System.Windows.Forms.TrackBar OpacityTrackBar;
 		private System.Windows.Forms.ToolStripMenuItem setOpacityToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem interfacesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem noNicsToolStripMenuItem;
 	}
 }
 

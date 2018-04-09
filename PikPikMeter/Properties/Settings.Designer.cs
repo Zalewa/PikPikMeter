@@ -106,5 +106,16 @@ namespace PikPikMeter.Properties {
                 this["Opacity"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection DisabledNics {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DisabledNics"]));
+            }
+            set {
+                this["DisabledNics"] = value;
+            }
+        }
     }
 }
