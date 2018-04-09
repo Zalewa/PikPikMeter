@@ -36,6 +36,8 @@ namespace PikPikMeter
 			this.Size = size;
 			this.TopMost = Settings.Default.TopMost;
 			this.stayOnTopToolStripMenuItem.Checked = Settings.Default.TopMost;
+			TrafficMonitor.GraphOnIcon = Settings.Default.GraphOnTray;
+			this.graphOnTrayToolStripMenuItem.Checked = Settings.Default.GraphOnTray;
 		}
 
 		private void SaveSettings()
@@ -47,6 +49,7 @@ namespace PikPikMeter
 			Settings.Default.TopMost = this.TopMost;
 			Settings.Default.ScaleFactor = TrafficMonitor.GraphPaint.Scale.Value;
 			Settings.Default.Bits = TrafficMonitor.GraphPaint.Scale.InBits;
+			Settings.Default.GraphOnTray = TrafficMonitor.GraphOnIcon;
 			Settings.Default.Save();
 		}
 
@@ -57,7 +60,8 @@ namespace PikPikMeter
 			{
 				Graph = this.GraphBox,
 				LabelDownload = this.LbLDownloadTotal,
-				LabelUpload = this.LblUploadTotal
+				LabelUpload = this.LblUploadTotal,
+				Icon = this.trayIcon
 			};
 			TrafficMonitor.GraphPaint.Scale = new TrafficUnitValue(
 				Settings.Default.ScaleFactor, Settings.Default.Bits);
@@ -68,8 +72,8 @@ namespace PikPikMeter
 		private void MainWindow_Load(object sender, EventArgs e)
 		{
 			trayIcon.Visible = true;
-			LoadSettings();
 			SetupTrafficMonitor();
+			LoadSettings();
 			TrafficMonitor.Tick();
 		}
 
@@ -215,8 +219,16 @@ namespace PikPikMeter
 
 		private void stayOnTopToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			this.TopMost = stayOnTopToolStripMenuItem.Checked;
-			Settings.Default.TopMost = stayOnTopToolStripMenuItem.Checked;
+			bool flag = stayOnTopToolStripMenuItem.Checked;
+			this.TopMost = flag;
+			Settings.Default.TopMost = flag;
+		}
+
+		private void graphOnTrayToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			bool flag = graphOnTrayToolStripMenuItem.Checked;
+			TrafficMonitor.GraphOnIcon = flag;
+			Settings.Default.GraphOnTray = flag;
 		}
 
 		private void GraphPanel_Resize(object sender, EventArgs e)

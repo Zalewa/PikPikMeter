@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PikPikMeter.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace PikPikMeter
 		public Label LabelDownload;
 		public Label LabelUpload;
 		public PictureBox Graph;
+		public NotifyIcon Icon;
 	}
 
 	/**
@@ -23,13 +25,26 @@ namespace PikPikMeter
 	{
 		public TrafficMasterMonitorDisplay Display;
 
+		private readonly int TotalsAverageCount = 5;
 		private TrafficGrabber TrafficGrabber = new TrafficGrabber();
 		private TrafficStat TrafficStat = new TrafficStat();
 		private TrafficGraphPaint _GraphPaint = new TrafficGraphPaint();
+		private bool _PaintOnIcon = false;
 
 		public TrafficGraphPaint GraphPaint
 		{
 			get { return _GraphPaint; }
+		}
+
+		public bool GraphOnIcon
+		{
+			get { return _PaintOnIcon; }
+			set
+			{
+				_PaintOnIcon = value;
+				if (!_PaintOnIcon)
+					Display.Icon.Icon = Resources.tray;
+			}
 		}
 
 		public void Start()
@@ -46,24 +61,34 @@ namespace PikPikMeter
 			{
 				GraphPaint.Paint(Display.Graph, TrafficStat);
 			}
+			if (Display.Icon != null)
+			{
+				Display.Icon.Text = String.Format("DL {0}\nUL {1}",
+					TotalText(Stat.Download),
+					TotalText(Stat.Upload));
+				// Paint must happen after we set the Text, otherwise the icon will be blank.
+				if (GraphOnIcon)
+					GraphPaint.Paint(Display.Icon, TrafficStat);
+			}
 			if (Display.LabelDownload != null)
 			{
-				ApplyTotalTextToLabel(TrafficStat.Total(Stat.Download, 5), Display.LabelDownload);
+				Display.LabelDownload.Text = TotalText(Stat.Download);
 			}
 			if (Display.LabelUpload != null)
 			{
-				ApplyTotalTextToLabel(TrafficStat.Total(Stat.Upload, 5), Display.LabelUpload);
+				Display.LabelUpload.Text = TotalText(Stat.Upload);
 			}
 		}
 
-		private void ApplyTotalTextToLabel(float[] totals, Label label)
+		private string TotalText(Stat stat)
 		{
+			float[] totals = TrafficStat.Total(stat, TotalsAverageCount);
 			bool bits = GraphPaint.Scale.InBits; // TODO bad programming practice, code smell.
 			float average = totals.Average();
 			if (bits)
 				average *= 8.0f;
 			var trafficValue = new TrafficUnitValue(average, bits);
-			label.Text = (totals.Length > 0) ?
+			return (totals.Length > 0) ?
 				TrafficUnit.Humanize(trafficValue) + "/s" :
 				"N/A";
 		}

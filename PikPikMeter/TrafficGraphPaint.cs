@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace PikPikMeter
 		public Font TextFont = SystemFonts.SmallCaptionFont;
 		public Brush TextBrush = Brushes.White;
 
+		private readonly Size ReasonableScaleTextSize = new Size(64, 32);
 		private TrafficUnitValue _Scale = new TrafficUnitValue(1 * 1024.0f * 1024.0f, false);
 		private string ScaleText;
 
@@ -46,6 +48,25 @@ namespace PikPikMeter
 				// We don't want the repeat of FreeMeter, do we?
 				return;
 			Bitmap bitmap = new Bitmap(graph.Width, graph.Height);
+			Paint(bitmap, stat);
+			graph.Image = bitmap;
+		}
+
+		[System.Runtime.InteropServices.DllImport("user32.dll", CharSet = CharSet.Auto)]
+		extern static bool DestroyIcon(IntPtr handle);
+
+		public void Paint(NotifyIcon icon, TrafficStat stat)
+		{
+			var iconSize = SystemInformation.SmallIconSize;
+			Bitmap bitmap = new Bitmap(iconSize.Width, iconSize.Height);
+			Paint(bitmap, stat);
+			var hicon = bitmap.GetHicon();
+			icon.Icon = Icon.FromHandle(hicon);
+			DestroyIcon(hicon);
+		}
+
+		public void Paint(Bitmap bitmap, TrafficStat stat)
+		{
 			Graphics graphics = Graphics.FromImage(bitmap);
 			try
 			{
@@ -95,13 +116,13 @@ namespace PikPikMeter
 						drawPos, GetDrawY1(lowerTotal, bitmap.Height));
 					// Draw scale text.
 				}
-				graphics.DrawString(ScaleText, TextFont, TextBrush, 1, 1);
+				if (CanPaintScale(bitmap))
+					graphics.DrawString(ScaleText, TextFont, TextBrush, 1, 1);
 			}
 			finally
 			{
 				graphics.Dispose();
 			}
-			graph.Image = bitmap;
 		}
 
 		private int GetDrawY1(float total, int height)
@@ -118,7 +139,13 @@ namespace PikPikMeter
 			else if (ratio <= 0.0f)
 				return 0;
 			else
-				return (int)Math.Round(ratio * (float)height, 0);
+				return (int)Math.Ceiling(ratio * (float)height);
+		}
+
+		private bool CanPaintScale(Bitmap bitmap)
+		{
+			return bitmap.Width >= ReasonableScaleTextSize.Width
+				&& bitmap.Height >= ReasonableScaleTextSize.Height;
 		}
 	}
 }
