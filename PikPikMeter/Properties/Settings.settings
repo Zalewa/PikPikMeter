@@ -11,7 +11,7 @@
     <Setting Name="TopMost" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="ScaleFactor" Type="System.Single" Scope="User">
+    <Setting Name="ScaleFactor" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1048576</Value>
     </Setting>
     <Setting Name="Bits" Type="System.Boolean" Scope="User">

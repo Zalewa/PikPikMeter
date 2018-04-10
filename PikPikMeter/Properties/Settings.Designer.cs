@@ -62,9 +62,9 @@ namespace PikPikMeter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1048576")]
-        public float ScaleFactor {
+        public double ScaleFactor {
             get {
-                return ((float)(this["ScaleFactor"]));
+                return ((double)(this["ScaleFactor"]));
             }
             set {
                 this["ScaleFactor"] = value;

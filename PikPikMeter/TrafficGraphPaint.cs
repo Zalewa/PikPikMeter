@@ -133,13 +133,13 @@ namespace PikPikMeter
 
 		private int GetBarHeight(float total, int height)
 		{
-			float ratio = total / Scale.Bytes;
-			if (ratio >= 1.0f)
+			double ratio = (double)(total) / Scale.Bytes;
+			if (ratio >= 1.0)
 				return height;
-			else if (ratio <= 0.0f)
+			else if (ratio <= 0.0)
 				return 0;
 			else
-				return (int)Math.Ceiling(ratio * (float)height);
+				return (int)Math.Ceiling(ratio * height);
 		}
 
 		private bool CanPaintScale(Bitmap bitmap)

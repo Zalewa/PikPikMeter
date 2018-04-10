@@ -8,20 +8,20 @@ namespace PikPikMeter
 {
 	public struct TrafficUnitValue
 	{
-		public float Value;
+		public double Value;
 		public bool InBits;
 
-		public TrafficUnitValue(float value, bool inBits)
+		public TrafficUnitValue(double value, bool inBits)
 		{
 			this.Value = value;
 			this.InBits = inBits;
 		}
 
-		public float Bytes
+		public double Bytes
 		{
 			get
 			{
-				return InBits ? Value * 8 : Value;
+				return InBits ? Value / 8.0 : Value;
 			}
 		}
 	}
@@ -94,7 +94,7 @@ namespace PikPikMeter
 		 */
 		public static string Humanize(TrafficUnitValue trafficValue)
 		{
-			float total = trafficValue.Value;
+			double total = trafficValue.Value;
 			string transferUnit = trafficValue.InBits ? "b" : "B";
 			string sizeFactorName = "";
 			float sizeFactor = 1.0f;
