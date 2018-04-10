@@ -47,6 +47,10 @@ namespace PikPikMeter
 			this.startWithSystemToolStripMenuItem.Checked = SystemStart.On;
 			this.Opacity = Math.Max(MinimumOpacity, Settings.Default.Opacity);
 
+			TrafficMonitor.GraphPaint.Scale = new TrafficUnitValue(
+				Math.Max(1.0f, Settings.Default.ScaleFactor),
+				Settings.Default.Bits);
+
 			if (Settings.Default.DisabledNics == null)
 				Settings.Default.DisabledNics = new System.Collections.Specialized.StringCollection();
 			foreach (string disabledNic in Settings.Default.DisabledNics)
@@ -77,8 +81,6 @@ namespace PikPikMeter
 				LabelUpload = this.LblUploadTotal,
 				Icon = this.trayIcon
 			};
-			TrafficMonitor.GraphPaint.Scale = new TrafficUnitValue(
-				Settings.Default.ScaleFactor, Settings.Default.Bits);
 			RefreshTimer.Interval = 1000;
 			RefreshTimer.Enabled = true;
 		}
@@ -224,6 +226,8 @@ namespace PikPikMeter
 					try
 					{
 						trafficScale = TrafficUnit.Dehumanize(askValueDialog.Value);
+						if (trafficScale.Value <= 0)
+							throw new ArgumentException("must be greater than zero");
 					}
 					catch (ArgumentException ex)
 					{

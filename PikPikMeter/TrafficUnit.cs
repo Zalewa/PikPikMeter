@@ -33,6 +33,11 @@ namespace PikPikMeter
 		private static readonly float Mi = 1024.0f * Ki;
 		private static readonly float Gi = 1024.0f * Mi;
 
+		private static readonly string[] ValidUnits =
+		{
+			"gb", "mb", "kb", "b", "gib", "mib", "kib",
+		};
+
 		/**
 		 * <summary>
 		 * Parse text such as "20 mb" to TrafficUnitValue struct.
@@ -40,18 +45,18 @@ namespace PikPikMeter
 		 */
 		public static TrafficUnitValue Dehumanize(string text)
 		{
-			text = text.Trim();
-			while (text.Contains("  "))
-				text = text.Replace("  ", " ");
-			string[] tokens = text.Split(' ');
+			string[] tokens = TokenizeText(text);
 			if (tokens.Length > 2 || tokens.Length < 0)
 				throw new ArgumentException("invalid format");
+			if (tokens.Length == 0)
+				throw new ArgumentException("no value");
 			float sizeFactor = 1.0f;
 			bool bits = false;
 			if (tokens.Length == 2 && !String.IsNullOrWhiteSpace(tokens[1]))
 			{
 				string unitToken = tokens[1];
-				if (unitToken.Length > 3)
+
+				if (!ValidUnits.Contains(unitToken.ToLower()))
 					throw new ArgumentException("unknown unit, try: GB, Gb, GiB, kiB, etc.");
 				// Be lenient with capitalization of size factor.
 				string sizeFactorToken = unitToken.ToLower();
@@ -72,7 +77,7 @@ namespace PikPikMeter
 			float value;
 			try
 			{
-				value = float.Parse(tokens[0]);
+				value = ParseFloat(tokens[0]);
 			}
 			catch (Exception e)
 			{
@@ -112,6 +117,49 @@ namespace PikPikMeter
 
 			return String.Format("{0:0.0} {1}{2}", total / sizeFactor,
 				sizeFactorName, transferUnit);
+		}
+
+		private static string[] TokenizeText(string text)
+		{
+			text = text.Trim();
+			while (text.Contains("  "))
+				text = text.Replace("  ", " ");
+
+			int numberIdx;
+			for (numberIdx = 0; numberIdx < text.Length; ++numberIdx)
+			{
+				if (text[numberIdx] == ' ')
+					break;
+				if (text[numberIdx] == '-' && numberIdx == 0)
+					continue;
+				string numberCandidate = text.Substring(0, numberIdx + 1);
+				try
+				{
+					ParseFloat(numberCandidate);
+				}
+				catch (Exception)
+				{
+					break;
+				}
+			}
+			--numberIdx;
+			if (numberIdx < 0)
+				return new string[0];
+			string numberToken = text.Substring(0, numberIdx + 1);
+
+			var tokens = new List<string>();
+			tokens.Add(numberToken);
+
+			text = text.Substring(numberIdx + 1).Trim();
+			if (text.Length > 0)
+				tokens.Add(text);
+
+			return tokens.ToArray();
+		}
+
+		private static float ParseFloat(string text)
+		{
+			return float.Parse(text);
 		}
 	}
 }
