@@ -215,3 +215,38 @@ Pictures were drawn in GIMP.
 
 `ico` files were then created in IcoFX 1.6.4 - the last Freeware
 version of this program.
+
+Section B - Traffic Monitoring
+==============================
+
+The program needs to do several jobs in something that
+could be described as a "pipeline" in order to show
+the traffic measures to the user. Let's try to list them:
+
+* Read the current traffic stats as provided by Windows.
+* Accumulate them in a history collection for graph painting.
+* Toggle monitoring of each Network Interface on demand.
+* Handle Network Interfaces going down (disappearing) or up (appearing).
+* Paint the history graph.
+* Display current traffic in labels.
+* Scale the traffic to a preset unit size and type.
+
+These responsibilities were spread between several `Traffic*` classes.
+It took some care and consideration to ensure that each class has
+its own **single** purpose and **single** responsibility.
+
+What's difficult here is to create a clearly visible hierarchy
+and assign proper names.
+
+Hierarchy makes it easy to know what code calls which other code and
+to follow the execution routines from general to the details.
+
+Naming should make it obvious what is the exact responsibility
+of each class, what job it does and what code can be expected.
+
+Unfortunately, I don't feel that these two "virtues" of good code were
+fulfilled sufficiently here. Only because PikPikMeter is a simple
+program, the problem is not that malicious. In bigger applications
+accumulated issues of this nature wreak chaos in the code base and
+cause long-lasting maintenance troubles and numerous refactoring
+sessions if the team is willing and has time to do them.
