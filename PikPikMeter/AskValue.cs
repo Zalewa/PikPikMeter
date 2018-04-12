@@ -39,13 +39,5 @@ namespace PikPikMeter
 			this.AcceptButton = this.ButtonOk;
 			this.ActiveControl = this.TextBoxValue;
 		}
-
-		private void TextBoxValue_KeyDown(object sender, KeyEventArgs e)
-		{
-			//if (e.KeyCode == Keys.Enter)
-			//{
-			//	this.DialogResult = DialogResult.OK;
-			//}
-		}
 	}
 }
