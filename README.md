@@ -56,3 +56,9 @@ Name
 PikPikMeter is named like this because if I get my ear close to the
 network cable I can hear a faint "piiiiiiiii...". Or it might just
 be my tinnitus.
+
+Source Code
+===========
+
+Files that build the source code and their purpose are described
+in smaller detail in [SOURCE.md](SOURCE.md) file.
