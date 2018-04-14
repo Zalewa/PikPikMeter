@@ -82,8 +82,8 @@ namespace PikPikMeter
 
 				// However, it's perfectly fine to get lesser amount of totals than requested.
 				int realAmount = downloadTotals.Length;
-				/// Totals are LIFO so the most recent measure will be first in the array.
-				/// We want to draw it on the right side of the graph.
+				// Totals length may be shorter than the graph width, but we still want
+				// the graph bars to stick to the right edge.
 				for (int idx = 0, drawPos = bitmap.Width - realAmount; idx < realAmount; ++idx, ++drawPos)
 				{
 					float download = downloadTotals[idx];
