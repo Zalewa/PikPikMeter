@@ -11,6 +11,60 @@ Their source code is generated through visual controls
 and they are accompanied by sibling files that have
 code written by hand.
 
+Tech Choices
+============
+
+Even though my usual "go to" for desktop apps is `C++` + `CMake` + `Qt`
+trio, as I usually care that the program works on at least 2 Operating
+Systems - Windows and Linux, in this case I wanted a stricte Windows
+app. As much as Qt makes it easier to develop apps, and as much
+as C++14 has pushed forward the comfort of using the language,
+there's still some boiler-plate needed to even get the project up
+and there's still some scaffolding needed to be built before you
+can focus on the problem at hand.
+
+C#, which is excellently supported by Visual Studio, gives you
+the benefit of nearly immediately focusing on solving the actual
+problem you want to solve. Benefits of C#, Visual Studio and .NET
+platform:
+
+* Excellent visual form editor.
+* Excellent code auto-completion.
+* Standard library solves most of the boring and tricky
+  problems for you.
+* Managed memory environment.
+* C# structs (copy on assign).
+* C# properties.
+* Exceptions with useful stack traces.
+* Static typing, allowing the compiler to detect many errors for you
+  before the runtime.
+
+Cons:
+
+* Microsoft proposed standard for code style and symbol naming
+  is incomplete and one of the strangest I've seen. Name collisions
+  between types and attributes are not uncommon and sometimes
+  you need to bend and twist your mind to figure out non-colliding
+  naming patterns. Moreover, even one-word symbol names force
+  you to press the `SHIFT` key.
+* Even though there's now 'mono' for Linux, this particular
+  program calls the native `DestroyIcon` which immediately
+  causes it to crash. It also remains untested if mono
+  on Linux provides the traffic statistics.
+* Another IDE that you're stuck with. Between Eclipse for Java
+  and Emacs for everything else, that's 3 IDEs whose keyboard
+  shortcuts you need to learn and memorize.
+
+The initial, fully-working version of the program, sans bugs,
+was done in less than 24 hours, and even that is a bit too
+long for the program of this scale.
+
+Code style adopts Microsoft recommendations. Unfortunately,
+Microsoft doesn't state any recommendations for naming private
+class members. In PikPikMeter they just follow the naming convention
+of public members (ie. `CapitalizeItLikeThis()`).
+
+
 Section A - UI and utilities
 ============================
 
