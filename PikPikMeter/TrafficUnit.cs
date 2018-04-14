@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace PikPikMeter
 {
+	/// <summary>
+	/// Conveys a traffic (or size) amount with information if that amount
+	/// is provided in bits or Bytes.
+	/// </summary>
 	public struct TrafficUnitValue
 	{
+		/// <summary>
+		/// Size amount.
+		/// </summary>
 		public double Value;
+		/// <summary>
+		/// Bits flag. If true, Value is in bits. If false, Value is in Bytes.
+		/// </summary>
 		public bool InBits;
 
 		public TrafficUnitValue(double value, bool inBits)
@@ -17,6 +27,9 @@ namespace PikPikMeter
 			this.InBits = inBits;
 		}
 
+		/// <summary>
+		/// Provides the size amount in Bytes, regardless if the raw Value is in bits.
+		/// </summary>
 		public double Bytes
 		{
 			get
@@ -26,6 +39,10 @@ namespace PikPikMeter
 		}
 	}
 
+	/// <summary>
+	/// Conversion mechanisms between human-readable traffic/size amounts and
+	/// program-convenient  <see cref="TrafficUnitValue"/>.
+	/// </summary>
 	class TrafficUnit
 	{
 		// kibi, mibi, gibi, etc.
@@ -38,11 +55,16 @@ namespace PikPikMeter
 			"gb", "mb", "kb", "b", "gib", "mib", "kib",
 		};
 
-		/**
-		 * <summary>
-		 * Parse text such as "20 mb" to TrafficUnitValue struct.
-		 * </summary>
-		 */
+		/// <summary>
+		/// Parse text such as "20 mb" to TrafficUnitValue struct.
+		/// <para>
+		/// Parsing is case-insensitive for size scaling (so: g, m, b),
+		/// and case-sensitive for size type (so: B, b).
+		/// The 'i' suffix to size scale is optional and doesn't change
+		/// the output of the function.
+		/// Numerical values are parsed as floats using current locale.
+		/// </para>
+		/// </summary>
 		public static TrafficUnitValue Dehumanize(string text)
 		{
 			string[] tokens = TokenizeText(text);
@@ -86,12 +108,16 @@ namespace PikPikMeter
 			return new TrafficUnitValue(value * sizeFactor, bits);
 		}
 
-		/**
-		 * <summary>
-		 * Convert total amount of bytes to a human-readable string.
-		 * The output format is controlled through properties of this class.
-		 * </summary>
-		 */
+		/// <summary>
+		/// Convert total amount of bytes to a human-readable string.
+		/// The output format is controlled through properties of the input
+		/// <see cref="TrafficUnitValue"/>. Scale is decided basing
+		/// on the size amount, however unit type (bits or Bytes) is taken
+		/// directly from the input param.
+		/// </summary>
+		/// <returns>
+		/// Human-readable traffic scale in example format "12.34 Mb".
+		/// </returns>
 		public static string Humanize(TrafficUnitValue trafficValue)
 		{
 			double total = trafficValue.Value;

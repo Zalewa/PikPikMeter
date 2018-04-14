@@ -9,8 +9,15 @@ using System.Windows.Forms;
 
 namespace PikPikMeter
 {
+	/// <summary>Controls application start with the Operating System.</summary>
 	class SystemStart
 	{
+		/// <summary>
+		/// Toggles application start with the Operating System by adding a necessary
+		/// registry entry into "CurrentVersion/Run" registry key. On 'get', tries
+		/// to see if this entry exists in the registry and is valid and returns true
+		/// if the autostart conditions are met.
+		/// </summary>
 		public static bool On
 		{
 			get
