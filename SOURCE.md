@@ -349,10 +349,15 @@ by the immediate code and re-raised as this exception. This
 exception is further captured and handled to avoid program
 crashes and recover from error states.
 
-An error recovery happens when Network Interfaces go up or down.
+An error recovery happens when Network Interfaces go down.
 When this happens, exception is captured and list of Interfaces
 is refreshed in hopes that the program can continue normally with
 a new list.
+
+The Interfaces are also refreshed with each grab because
+it is unknown when a new Network Interface will go up.
+To reduce Garbage Collector work, objects for Interfaces
+that do not change the state are preserved.
 
 [TrafficGrabber.cs](PikPikMeter/TrafficGrabber.cs)
 ==================================================

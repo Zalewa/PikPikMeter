@@ -23,17 +23,21 @@ namespace PikPikMeter
 		/// <summary>
 		/// Get the list of Network Interfaces from the Operating System and memorize
 		/// them for future use in <see cref="GrabMeasures"/>. <see cref="GrabMeasures"/>
-		/// itself will also refresh the list if error occurs.
+		/// itself will also refresh the list if error occurs. Objects for already known
+		/// NICs are not recreated.
 		/// </summary>
 		public void RefreshNics()
 		{
 			// Network Interfaces can come and go during normal OS operation.
-			var nics = new List<TrafficNic>();
-			foreach (string nic in TrafficNic.Nics)
+			var osNics = TrafficNic.Nics;
+			// Add only the new NICs, leaving alone existing ones.
+			foreach (string nic in osNics)
 			{
-				nics.Add(new TrafficNic(nic));
+				if (!nicsTraffic.Exists(e => e.Nic == nic))
+					nicsTraffic.Add(new TrafficNic(nic));
 			}
-			this.nicsTraffic = nics;
+			// Remove from the list NICs that are gone.
+			nicsTraffic.RemoveAll(e => !osNics.Contains(e.Nic));
 		}
 
 		/// <summary>
@@ -45,7 +49,8 @@ namespace PikPikMeter
 		/// </summary>
 		public List<TrafficNicMeasure> GrabMeasures()
 		{
-			bool needRefresh = false;
+			bool needReset = false;
+			RefreshNics();
 			var measures = new List<TrafficNicMeasure>();
 			foreach (TrafficNic nicTraffic in this.nicsTraffic)
 			{
@@ -56,12 +61,20 @@ namespace PikPikMeter
 				catch (TrafficMeasureException ex)
 				{
 					// TODO log me
-					needRefresh = true;
+					needReset = true;
 				}
 			}
-			if (needRefresh)
+			if (needReset)
+			{
+				ClearNics();
 				RefreshNics();
+			}
 			return measures;
+		}
+
+		private void ClearNics()
+		{
+			nicsTraffic = new List<TrafficNic>();
 		}
 	}
 }
