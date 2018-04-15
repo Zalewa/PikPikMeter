@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PikPikMeter
 {
+	/// <summary>Error denotes any problem with traffic measure grab.</summary>
 	class TrafficMeasureException : Exception
 	{
 		public TrafficMeasureException()

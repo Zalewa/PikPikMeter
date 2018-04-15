@@ -9,13 +9,28 @@ using System.Windows.Forms;
 
 namespace PikPikMeter
 {
+	/// <summary>
+	/// Draws traffic graph on a PictureBox, a NotifyIcon or just on a plain Bitmap.
+	/// <para>
+	/// Graph includes:
+	/// - 1-pixel width bars for download, upload and common traffic.
+	/// - Scale printed as text.
+	/// - Background color.
+	/// </para>
+	/// </summary>
 	class TrafficGraphPaint
 	{
+		/// <summary>Pen with which the download traffic bars are painted.</summary>
 		public Pen DownloadPen = new Pen(Brushes.Green);
+		/// <summary>Pen with which the upload traffic bars are painted.</summary>
 		public Pen UploadPen = new Pen(Brushes.Red);
+		/// <summary>Pen with which bars for overlapping traffic are painted.</summary>
 		public Pen BothPen = new Pen(Brushes.Yellow);
+		/// <summary>Background color, basically.</summary>
 		public Color ClearColor = Color.Black;
+		/// <summary>Font with which the graph scale text is printed.</summary>
 		public Font TextFont = SystemFonts.SmallCaptionFont;
+		/// <summary>Color of the graph scale text.</summary>
 		public Brush TextBrush = Brushes.White;
 
 		private readonly Size ReasonableScaleTextSize = new Size(64, 32);
@@ -28,6 +43,12 @@ namespace PikPikMeter
 			Scale = _Scale;
 		}
 
+		/// <summary>
+		/// Scale as <see cref="TrafficUnitValue"/> for the graph. This honors
+		/// the bits/Bytes selection. The value of the scale denotes the highest
+		/// traffic value that can be painted on the graph. If actual traffic
+		/// exceeds the scale, it's simply painted as a full-height bar.
+		/// </summary>
 		public TrafficUnitValue Scale
 		{
 			set
@@ -41,6 +62,10 @@ namespace PikPikMeter
 			}
 		}
 
+		/// <summary>
+		/// Paints <see cref="TrafficStat"/> on a PictureBox. The size of the graph
+		/// matches the size of the PictureBox.
+		/// </summary>
 		public void Paint(PictureBox graph, TrafficStat stat)
 		{
 			if (graph.Width <= 0 || graph.Height <= 0)
@@ -55,6 +80,11 @@ namespace PikPikMeter
 		[System.Runtime.InteropServices.DllImport("user32.dll", CharSet = CharSet.Auto)]
 		extern static bool DestroyIcon(IntPtr handle);
 
+		/// <summary>
+		/// Paints <see cref="TrafficStat"/> on a NotifyIcon. It needs native Windows
+		/// function to destroy the icon. The size of the graph matches small icon size
+		/// as provided by .NET runtime.
+		/// </summary>
 		public void Paint(NotifyIcon icon, TrafficStat stat)
 		{
 			var iconSize = SystemInformation.SmallIconSize;
@@ -65,6 +95,9 @@ namespace PikPikMeter
 			DestroyIcon(hicon);
 		}
 
+		/// <summary>
+		/// Paints <see cref="TrafficStat"/> on an arbitrary Bitmap.
+		/// </summary>
 		public void Paint(Bitmap bitmap, TrafficStat stat)
 		{
 			Graphics graphics = Graphics.FromImage(bitmap);

@@ -8,6 +8,11 @@ using System.Windows.Forms;
 
 namespace PikPikMeter
 {
+	/// <summary>
+	/// Reference listing for all UI elements that <see cref="TrafficMasterMonitor"/>
+	/// uses to display the traffic statistics. The UI element that serves as the display
+	/// needs to prepare this structure and send it to the monitor.
+	/// </summary>
 	public struct TrafficMasterMonitorDisplay
 	{
 		public Label LabelDownload;
@@ -16,13 +21,14 @@ namespace PikPikMeter
 		public NotifyIcon Icon;
 	}
 
-	/**
-	 * <summary>
-	 * Border class between GUI and Traffic monitoring.
-	 * </summary>
-	 */
+	/// <summary>
+	/// Border class between GUI and Traffic monitoring. It starts and handles all
+	/// the traffic monitoring systems and keeps and uses references to UI elements
+	/// that serve as display of the traffic statistics.
+	/// </summary>
 	class TrafficMasterMonitor
 	{
+		/// <summary>Handle to the UI widgets for traffic display.</summary>
 		public TrafficMasterMonitorDisplay Display;
 
 		private readonly int TotalsAverageCount = 5;
@@ -31,11 +37,13 @@ namespace PikPikMeter
 		private TrafficGraphPaint _GraphPaint = new TrafficGraphPaint();
 		private bool _PaintOnIcon = false;
 
+		/// <summary>Object used to paint the graph, allows to alter colors and style.</summary>
 		public TrafficGraphPaint GraphPaint
 		{
 			get { return _GraphPaint; }
 		}
 
+		/// <summary>Controls if graph is also painted on the tray icon.</summary>
 		public bool GraphOnIcon
 		{
 			get { return _PaintOnIcon; }
@@ -47,12 +55,18 @@ namespace PikPikMeter
 			}
 		}
 
+		/// <summary>
+		/// Initiates the monitoring system. Can be called again to reset the monitoring history.
+		/// </summary>
 		public void Start()
 		{
 			TrafficGrabber.RefreshNics();
 			TrafficStat = new TrafficStat();
 		}
 
+		/// <summary>
+		/// Grabs measures and updates the displays. Call this in a regular intervals preferably.
+		/// </summary>
 		public void Tick()
 		{
 			List<TrafficNicMeasure> measures = TrafficGrabber.GrabMeasures();
@@ -60,6 +74,10 @@ namespace PikPikMeter
 			Repaint();
 		}
 
+		/// <summary>
+		/// Updates the display without getting any new data. Call this when view needs
+		/// to be redrawn.
+		/// </summary>
 		public void Repaint()
 		{
 			if (Display.Graph != null)
@@ -85,11 +103,20 @@ namespace PikPikMeter
 			}
 		}
 
+		/// <summary>
+		/// Toggle statistics display from a specific Network Interface. Network Interface
+		/// name must be exact as returned by <see cref="TrafficGrabber.RefreshNics()"/>.
+		/// Note that the monitoring itself is not disabled, just the display.
+		/// </summary>
 		public void SetNicEnabled(string nic, bool enabled)
 		{
 			TrafficStat.SetNicEnabled(nic, enabled);
 		}
 
+		/// <summary>
+		/// Gets the "total amount" text for a given statistic type.
+		/// The unit type of the text depends on the unit type used for graph painting.
+		/// </summary>
 		private string TotalText(Stat stat)
 		{
 			float[] totals = TrafficStat.Total(stat, TotalsAverageCount);

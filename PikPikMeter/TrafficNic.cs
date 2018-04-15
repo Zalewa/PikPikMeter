@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace PikPikMeter
 {
+	/// <summary>
+	/// Traffic measure grabber for a specific, singular Network Interface.
+	/// It doesn't grab anything by itself, but rather keeps the references that
+	/// can be indirectly used by external caller to grab measure at its whim.
+	/// </summary>
 	public class TrafficNic
 	{
 		private string nic;
@@ -31,8 +36,14 @@ namespace PikPikMeter
 			}
 		}
 
+		/// <summary>
+		/// Network Interface name exactly as returned by <see cref="TrafficGrabber.RefreshNics()"/>.
+		/// </summary>
 		public string Nic { get { return nic; } }
 
+		/// <summary>
+		/// Grabs a single traffic measure at this instant from the Network Interface.
+		/// </summary>
 		public TrafficNicMeasure Measure()
 		{
 			try
