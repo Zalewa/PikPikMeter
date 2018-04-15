@@ -43,6 +43,10 @@ namespace PikPikMeter
 			get { return _GraphPaint; }
 		}
 
+		/// <summary>All Network Interfaces that were measured at least once.</summary>
+		public string[] KnownMeasuredNics
+		{ get { return TrafficStat.KnownNics; } }
+
 		/// <summary>Controls if graph is also painted on the tray icon.</summary>
 		public bool GraphOnIcon
 		{

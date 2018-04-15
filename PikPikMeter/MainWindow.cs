@@ -310,25 +310,35 @@ namespace PikPikMeter
 				if (item != noNicsToolStripMenuItem)
 					interfacesToolStripMenuItem.DropDownItems.Remove(item);
 			}
+			noNicsToolStripMenuItem.Text = "No NICs";
 			noNicsToolStripMenuItem.Visible = true;
 
-			string[] nics;
+			string[] measuredNics = TrafficMonitor.KnownMeasuredNics;
+			string[] osAvailableNics;
 			try
 			{
-				nics = TrafficNic.Nics;
+				osAvailableNics = TrafficNic.Nics;
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Cannot obtain NICs from system: " + ex.Message);
-				return;
+				noNicsToolStripMenuItem.Text = "Cannot obtain NICs from system: " + ex.Message;
+				osAvailableNics = new string[0];
 			}
-			noNicsToolStripMenuItem.Visible = (nics.Length == 0);
-			foreach (string nic in nics)
+			HashSet<string> toggleableNics = new HashSet<string>();
+			toggleableNics.UnionWith(measuredNics);
+			toggleableNics.UnionWith(osAvailableNics);
+
+			noNicsToolStripMenuItem.Visible = (toggleableNics.Count == 0);
+			foreach (string nic in toggleableNics)
 			{
-				var nicItem = new ToolStripMenuItem(nic);
+				var name = nic;
+				if (!osAvailableNics.Contains(nic))
+					name += " [down]";
+				var nicItem = new ToolStripMenuItem(name);
 				nicItem.CheckOnClick = true;
 				nicItem.Checked = !Settings.Default.DisabledNics.Contains(nic);
 				nicItem.Click += NicItem_Click;
+				nicItem.Tag = nic;
 				interfacesToolStripMenuItem.DropDownItems.Add(nicItem);
 			}
 		}
@@ -336,7 +346,7 @@ namespace PikPikMeter
 		private void NicItem_Click(object sender, EventArgs e)
 		{
 			var item = sender as ToolStripMenuItem;
-			string nic = item.Text;
+			string nic = item.Tag as string;
 			if (item.Checked)
 			{
 				Settings.Default.DisabledNics.Remove(nic);

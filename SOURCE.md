@@ -406,11 +406,6 @@ or exclude history of specific Network Interface at user's whim.
 This mechanism also preserves history for Network Interfaces
 that go down and then back up.
 
-An unfortunate consequence of the mechanisms so far is that
-if a Network Interface goes down, its traffic history,
-while still stored in the history, will immediately stop
-being displayed until the Interface goes back up. Moving on...
-
 [TrafficMasterMonitor.cs](PikPikMeter/TrafficMasterMonitor.cs)
 ==============================================================
 

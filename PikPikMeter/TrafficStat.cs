@@ -34,6 +34,23 @@ namespace PikPikMeter
 			measures = new History<StatMeasure>(historySize);
 		}
 
+		/// <summary>All Network Interfaces measured so far.</summary>
+		public string[] KnownNics
+		{
+			get
+			{
+				var uniqueNics = new HashSet<string>();
+				foreach (var measure in measures.Elements)
+				{
+					foreach (var nic in measure.NicMeasures)
+					{
+						uniqueNics.Add(nic.Nic);
+					}
+				}
+				return uniqueNics.ToArray();
+			}
+		}
+
 		/// <summary>
 		/// Add a singular measurement for multiple Network Interfaces.
 		/// It's normally expected that in a singular measure instance,
