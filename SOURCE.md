@@ -54,6 +54,9 @@ Cons:
 * Another IDE that you're stuck with. Between Eclipse for Java
   and Emacs for everything else, that's 3 IDEs whose keyboard
   shortcuts you need to learn and memorize.
+* Horrendous XML doc-comments format that is garbage to read
+  in plain-text and also doesn't integrate very well with
+  Visual Studio's tooltip and IntelliSense systems.
 
 The initial, fully-working version of the program, sans bugs,
 was done in less than 24 hours, and even that is a bit too
