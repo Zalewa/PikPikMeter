@@ -7,6 +7,12 @@ graph from it showing the most recent history. That's it. Nothing else.
 
 ![Screenshot](screen1.jpg)
 
+Requirements
+------------
+
+* .NET 4.5.1
+* Windows Operating System
+
 Configuration
 -------------
 
