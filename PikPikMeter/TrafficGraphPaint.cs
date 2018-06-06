@@ -36,11 +36,14 @@ namespace PikPikMeter
 		private readonly Size ReasonableScaleTextSize = new Size(64, 32);
 		private TrafficUnitValue _Scale = new TrafficUnitValue(1 * 1024.0f * 1024.0f, false);
 		private string ScaleText;
+		private Bitmap NotifyIconBitmap;
 
 		public TrafficGraphPaint()
 		{
 			// Effectively caches ScaleText.
 			Scale = _Scale;
+			var iconSize = SystemInformation.SmallIconSize;
+			NotifyIconBitmap = new Bitmap(iconSize.Width, iconSize.Height);
 		}
 
 		/// <summary>
@@ -72,7 +75,9 @@ namespace PikPikMeter
 				// Always be resilient to strange states.
 				// We don't want the repeat of FreeMeter, do we?
 				return;
-			Bitmap bitmap = new Bitmap(graph.Width, graph.Height);
+			Bitmap bitmap = graph.Image as Bitmap;
+			if (bitmap == null || bitmap.Size != graph.Size)
+				bitmap = new Bitmap(graph.Width, graph.Height);
 			Paint(bitmap, stat);
 			graph.Image = bitmap;
 		}
@@ -87,10 +92,8 @@ namespace PikPikMeter
 		/// </summary>
 		public void Paint(NotifyIcon icon, TrafficStat stat)
 		{
-			var iconSize = SystemInformation.SmallIconSize;
-			Bitmap bitmap = new Bitmap(iconSize.Width, iconSize.Height);
-			Paint(bitmap, stat);
-			var hicon = bitmap.GetHicon();
+			Paint(NotifyIconBitmap, stat);
+			var hicon = NotifyIconBitmap.GetHicon();
 			icon.Icon = Icon.FromHandle(hicon);
 			DestroyIcon(hicon);
 		}
