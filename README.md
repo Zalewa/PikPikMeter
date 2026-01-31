@@ -10,7 +10,7 @@ graph from it showing the most recent history. That's it. Nothing else.
 Requirements
 ------------
 
-* .NET 4.5.1
+* .NET 4.8
 * Windows Operating System
 
 Configuration
@@ -52,9 +52,9 @@ Reasons to use PikPikMeter
 Technology
 ----------
 
-PikPikMeter is written in C# for .NET platform 4.5.0.
+PikPikMeter is written in C# for .NET platform 4.8.
 
-PikPikMeter runs on MS Windows. It was tested on Windows 7.
+PikPikMeter runs on MS Windows. It was tested on Windows 10.
 
 Name
 ----
