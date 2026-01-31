@@ -43,7 +43,7 @@ namespace PikPikMeter
 	/// Conversion mechanisms between human-readable traffic/size amounts and
 	/// program-convenient  <see cref="TrafficUnitValue"/>.
 	/// </summary>
-	class TrafficUnit
+	public class TrafficUnit
 	{
 		// kibi, mibi, gibi, etc.
 		private static readonly float Ki = 1024.0f;
