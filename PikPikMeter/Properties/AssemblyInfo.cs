@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("PikPikMeter")]
 [assembly: AssemblyProduct("PikPikMeter")]
-[assembly: AssemblyCopyright("Copyright © Robert 'Robikz' Zalewski 2018 <zalewapl@gmail.com>")]
+[assembly: AssemblyCopyright("Copyright © Robert 'Robikz' Zalewski 2018-2026 <zalewapl@gmail.com>")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
