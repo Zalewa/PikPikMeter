@@ -1,5 +1,4 @@
-PikPikMeter
-===========
+# PikPikMeter
 
 PikPikMeter is a network traffic meter program for MS Windows that shows
 current network traffic (upload and download speed) and paints traffic
@@ -7,14 +6,12 @@ graph from it showing the most recent history. That's it. Nothing else.
 
 ![Screenshot](screen1.jpg)
 
-Requirements
-------------
+## Requirements
 
 * .NET 4.8
 * Windows Operating System
 
-Configuration
--------------
+## Configuration
 
 Config file is stored in
 
@@ -26,8 +23,7 @@ As there's no uninstaller (or installer, for that matter) for
 PikPikMeter, to fully manually uninstall, remove the .exe file
 and this config directory must be removed as well.
 
-Reasons to use PikPikMeter
---------------------------
+## Reasons to use PikPikMeter
 
 * No bullshit.
 * No bloatware.
@@ -49,22 +45,19 @@ Reasons to use PikPikMeter
 * Doesn't crash when networking interfaces go down.
 * Has a stupid name that immediately rings a bell.
 
-Technology
-----------
+## Technology
 
 PikPikMeter is written in C# for .NET platform 4.8.
 
 PikPikMeter runs on MS Windows. It was tested on Windows 10.
 
-Name
-----
+## Name
 
 PikPikMeter is named like this because if I get my ear close to the
 network cable I can hear a faint "piiiiiiiii...". Or it might just
 be my tinnitus.
 
-Source Code
-===========
+## Source Code
 
 Files that build the source code and their purpose are described
 in smaller detail in [SOURCE.md](SOURCE.md) file.
