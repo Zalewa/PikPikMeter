@@ -59,6 +59,12 @@ Code style adopts Microsoft recommendations.
 <https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names>
 _(Accessed: 2026-01)_
 
+Versioning
+==========
+
+At the time being, versioning is not in synch with `git describe`. Development
+versions are marked by their final segment (`D` in `A.B.C.D`) not being zero.
+
 Section A - UI and utilities
 ============================
 
