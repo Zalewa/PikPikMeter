@@ -225,7 +225,7 @@ namespace PikPikMeter
 					TrafficUnitValue trafficScale;
 					try
 					{
-						trafficScale = TrafficUnit.Dehumanize(askValueDialog.Value);
+						trafficScale = TrafficUnit.Parse(askValueDialog.Value);
 						if (trafficScale.Value <= 0)
 							throw new ArgumentException("must be greater than zero");
 					}

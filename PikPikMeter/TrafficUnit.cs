@@ -37,6 +37,13 @@ namespace PikPikMeter
 				return InBits ? Value / 8.0 : Value;
 			}
 		}
+
+		public override string ToString()
+		{
+			return String.Format(
+				"TrafficUnitValue(Value={0}, InBits={1})",
+				Value, InBits);
+		}
 	}
 
 	/// <summary>
@@ -65,7 +72,7 @@ namespace PikPikMeter
 		/// Numerical values are parsed as floats using current locale.
 		/// </para>
 		/// </summary>
-		public static TrafficUnitValue Dehumanize(string text)
+		public static TrafficUnitValue Parse(string text)
 		{
 			string[] tokens = TokenizeText(text);
 			if (tokens.Length > 2 || tokens.Length < 0)
