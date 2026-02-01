@@ -92,7 +92,7 @@
             Assert.AreEqual(new TrafficUnitValue(512 * 1024, bytes), TrafficUnit.Parse(FormatFloat(0.5f) + " MB"));
             // Fractional part after a non-zero, non-one integer.
             Assert.AreEqual(
-                new TrafficUnitValue(500 * 1024 * 1024 + 1024 * 1024 / 2, bytes),
+                new TrafficUnitValue((500 * 1024 * 1024) + (1024 * 1024 / 2), bytes),
                 TrafficUnit.Parse(FormatFloat(500.5f) + " MB"));
             // Whitespace padding
             Assert.AreEqual(new TrafficUnitValue(511 * 1024, bytes), TrafficUnit.Parse("  511  kB  "));
