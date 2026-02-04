@@ -9,7 +9,7 @@ graph from it showing the most recent history. That's it. Nothing else.
 ## Requirements
 
 * .NET 4.8
-* Windows Operating System
+* Windows 10+ Operating System
 
 ## Configuration
 
@@ -28,7 +28,6 @@ and this config directory must be removed as well.
 * No bullshit.
 * No bloatware.
 * No spyware.
-* No whiny programmers.
 * Open-Source (BSD 2-clause).
 * Just one .exe.
 * Just one XML config file.
