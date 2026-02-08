@@ -8,112 +8,140 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PikPikMeter.Properties {
-    
-    
+namespace PikPikMeter.Properties
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
+
+        public static Settings Default
+        {
+            get
+            {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point WindowLocation {
-            get {
+        public global::System.Drawing.Point WindowLocation
+        {
+            get
+            {
                 return ((global::System.Drawing.Point)(this["WindowLocation"]));
             }
-            set {
+            set
+            {
                 this["WindowLocation"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Size WindowSize {
-            get {
+        public global::System.Drawing.Size WindowSize
+        {
+            get
+            {
                 return ((global::System.Drawing.Size)(this["WindowSize"]));
             }
-            set {
+            set
+            {
                 this["WindowSize"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool TopMost {
-            get {
+        public bool TopMost
+        {
+            get
+            {
                 return ((bool)(this["TopMost"]));
             }
-            set {
+            set
+            {
                 this["TopMost"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1048576")]
-        public double ScaleFactor {
-            get {
+        public double ScaleFactor
+        {
+            get
+            {
                 return ((double)(this["ScaleFactor"]));
             }
-            set {
+            set
+            {
                 this["ScaleFactor"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool Bits {
-            get {
+        public bool Bits
+        {
+            get
+            {
                 return ((bool)(this["Bits"]));
             }
-            set {
+            set
+            {
                 this["Bits"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool GraphOnTray {
-            get {
+        public bool GraphOnTray
+        {
+            get
+            {
                 return ((bool)(this["GraphOnTray"]));
             }
-            set {
+            set
+            {
                 this["GraphOnTray"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double Opacity {
-            get {
+        public double Opacity
+        {
+            get
+            {
                 return ((double)(this["Opacity"]));
             }
-            set {
+            set
+            {
                 this["Opacity"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection DisabledNics {
-            get {
+        public global::System.Collections.Specialized.StringCollection DisabledNics
+        {
+            get
+            {
                 return ((global::System.Collections.Specialized.StringCollection)(this["DisabledNics"]));
             }
-            set {
+            set
+            {
                 this["DisabledNics"] = value;
             }
         }
