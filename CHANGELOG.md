@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Bump .NET from 4.5.1 to 4.8.
 
+### Fixed
+
+- Prevent repeated bitmap allocations during graph repaint by reusing existing
+  instances where possible.
+
 ## [1.0] - 2018-04-16
 
 ### Added
