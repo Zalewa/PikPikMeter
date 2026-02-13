@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PikPikMeter
@@ -13,7 +10,8 @@ namespace PikPikMeter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            var appContext = new AppContext();
+            Application.Run(new MainWindow(appContext));
         }
     }
 }

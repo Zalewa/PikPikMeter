@@ -9,13 +9,20 @@ namespace PikPikMeter
 {
     public partial class MainWindow : Form
     {
+        private readonly AppContext _appContext;
+
         private bool _moving = false;
         private bool _resizing = false;
         private Point _mouseDownLocation;
         private TrafficMasterMonitor _trafficMonitor;
 
-        public MainWindow()
+        public MainWindow(AppContext appContext)
         {
+            this._appContext = appContext;
+            this._appContext.Style.Changed += (_, __) =>
+            {
+                ApplyStyle();
+            };
             InitializeComponent();
         }
 
@@ -24,8 +31,19 @@ namespace PikPikMeter
             get { return OpacityTrackBar.Minimum / (double)OpacityTrackBar.Maximum; }
         }
 
+        private void ApplyStyle()
+        {
+            var style = this._appContext.Style;
+            this.BackColor = style.BorderColor;
+            this.panel1.BackColor = style.BackgroundColor;
+            this.GraphPanel.BackColor = style.GraphBackgroundColor;
+            this._trafficMonitor.GraphPaint.ApplyStyle(style);
+            this._trafficMonitor.Repaint();
+        }
+
         private void LoadSettings()
         {
+            this._appContext.LoadSettings(Settings.Default);
             Point location = Settings.Default.WindowLocation;
             Size size = Settings.Default.WindowSize;
             if (!ScreenPosition.IsValidLocation(location, size))
@@ -54,6 +72,7 @@ namespace PikPikMeter
 
         private void SaveSettings()
         {
+            this._appContext.SaveSettings(Settings.Default);
             Settings.Default.WindowLocation = this.Location;
             Settings.Default.WindowSize = (this.WindowState == FormWindowState.Normal) ?
                 this.Size :
@@ -91,6 +110,7 @@ namespace PikPikMeter
             trayIcon.Visible = true;
             SetupTrafficMonitor();
             LoadSettings();
+            ApplyStyle();
             _trafficMonitor.Tick();
         }
 
@@ -353,6 +373,25 @@ namespace PikPikMeter
             }
             _trafficMonitor.SetNicEnabled(nic, item.Checked);
             Repaint();
+        }
+
+        private void moreOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Temporarily disable TopMost, if enabled, so that the settings window can pop up.
+            var wasTopMost = this.TopMost;
+            this.TopMost = false;
+            // Show the settings window.
+            var settingsDialog = new SettingsWindow(this._appContext, Settings.Default);
+            if (settingsDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.SaveSettings();
+            }
+            else
+            {
+                settingsDialog.ResetSettings();
+            }
+            // Bring back the previous state of TopMost.
+            this.TopMost = wasTopMost;
         }
     }
 }

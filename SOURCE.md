@@ -72,6 +72,12 @@ window) and that's pretty much it.
 
 Moving on.
 
+### [AppContext](PikPikMeter/AppContext.cs)
+
+For passing around global app state. Beats singletons, because
+more than one AppContext can be created if necessary, and because
+passing it around requires conscious effort.
+
 ### [MainWindow.cs](PikPikMeter/MainWindow.cs)
 
 The Main Window, sometimes known as "The Dreaded God Object".
@@ -112,12 +118,29 @@ has a lot to do.
 These operations have nothing to do with "MainWindowing", but because
 `MainWindow` is at the topmost level of the source code, it can also
 access all the objects used in the program. I opted not to reference
-C#'s `Settings` singleton anywhere else in the code but here. It makes
+C#'s `Settings.Default` anywhere else in the code but here. It makes
 the other objects decoupled and allows to configure them in different
-ways if needed. MainWindow references all `Settings` values and
+ways if needed. MainWindow references most `Settings` values and
 assigns them to appropriate attributes of other objects. When `closing`
 event is received, it takes those attributes back and saves them
 through the usual .NET means - in an XML file in `%LOCALAPPDATA%`.
+
+### [SettingsWindow](PikPikMeter/SettingsWindow.cs)
+
+Cramming more and more settings into the main context menu would make
+that menu cumbersome. The SettingsWindow holds controls for editing
+those for which the context menu would not be effective.
+
+### [Style](PikPikMeter/Style.cs)
+
+This holds the properties that define the immediate appearance of
+the program. This is separate from Settings, because changing the Style
+doesn't immediately mean that the program Settings should be changed
+and persisted.
+
+It's an active element where changing the individual style properties
+will emit a `Changed` event that different parts of the program can
+subscribe to and adapt themselves to the changes.
 
 ### [ScreenPosition](PikPikMeter/ScreenPosition.cs)
 

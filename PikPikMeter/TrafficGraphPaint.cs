@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PikPikMeter
@@ -65,6 +61,11 @@ namespace PikPikMeter
             }
         }
 
+        public void ApplyStyle(Style style)
+        {
+            this.ClearColor = style.GraphBackgroundColor;
+        }
+
         /// <summary>
         /// Paints <see cref="TrafficStat"/> on a PictureBox. The size of the graph
         /// matches the size of the PictureBox.
@@ -83,7 +84,7 @@ namespace PikPikMeter
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = CharSet.Auto)]
-        extern static bool DestroyIcon(IntPtr handle);
+        static extern bool DestroyIcon(IntPtr handle);
 
         /// <summary>
         /// Paints <see cref="TrafficStat"/> on a NotifyIcon. It needs native Windows
@@ -169,7 +170,7 @@ namespace PikPikMeter
 
         private int GetBarHeight(float total, int height)
         {
-            double ratio = (double)(total) / Scale.Bytes;
+            double ratio = (double)total / Scale.Bytes;
             if (ratio >= 1.0)
                 return height;
             else if (ratio <= 0.0)

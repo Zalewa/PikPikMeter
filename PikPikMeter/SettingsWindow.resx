@@ -117,84 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mainContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="resizer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAGxJREFUOE9j
-        GAUUAWYgVoIwSQdsQBwKxD/BPBIBSLMPED8DYjOQACkAWbM2SIAUQBPNklAaL8Cl2QCI30OYuAEhzSAa
-        JxhYzaBEgq7ZBYjRNftBaTgAJU9XIAalMOREAtL0D4hBhsAAUDPDfwBpERkVpmYrrwAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
-  <data name="resizer.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAGxJREFUOE9j
-        GAUUAWYgVoIwSQdsQBwKxD/BPBIBSLMPED8DYjOQACkAWbM2SIAUQBPNklAaL8Cl2QCI30OYuAEhzSAa
-        JxhYzaBEgq7ZBYjRNftBaTgAJU9XIAalMOREAtL0D4hBhsAAUDPDfwBpERkVpmYrrwAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
-  <metadata name="trayIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>169, 17</value>
-  </metadata>
-  <data name="trayIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAABAA
-        AAAgAAAAAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD//wAA//8AAP//AAD//wAA
-        //8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AL9r/AAD//wAA//8AAP//AAD//wAA
-        //8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8Ab6n/AJOO/wAA//8AAP//AAf4/wAA
-        //8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AM9f/AP88/wDrS/8An4X/ANtX/wD/
-        PP8A41H/AAD//wAf5v8AX7X/AAD//wAA//8AAP//AAP7/wBzpv8Ak47/AONR/wD/PP8A/zz/AP88/wD/
-        PP8A/zz/AP88/wAA//8Ag5r/AP88/wB7oP8AAP//AAD//wCDmv8A/zz/AP88/wD/PP8A/zz/AOc2/wD/
-        PP8A/zz/AP88/wD/PP8AAP//AJ+F/wD/PP8A+z//AHOm/wCnf/8A/zz/AP88/wD/PP8A/zz/AP88/wCH
-        H/8A/zz/APM5/wD/PP8A/zz/AAD//wCfhf8A/zz/AP88/wD/PP8A/zz/AP88/wD/PP8A/zz/AP88/wD/
-        PP8ACwL/AJsk/wB3HP8AYxf/AP88/wAA//8An4X/AP88/wD/PP8A/zz/AP88/wD/PP8A/zz/AP88/wD/
-        PP8A/zz/AAAA/wAAAP8AAAD/AAAA/wCTIv8AAP//AJ+F/wD/PP8A/zz/AP88/wD/PP8A/zz/AP88/wD/
-        PP8A/zz/AP88/wAAAP8AAAD/AAAA/wAAAP8AAwD/AAD//wCfhf8Aoyb/AMMt/wD/PP8A+zv/AHcc/wDX
-        Mv8A/zz/AP88/wD/PP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA+/8AJ2n/AAcB/wAfB/8A6zf/AF8W/wAA
-        AP8AGwb/AO84/wD/PP8A/zz/AAAA/wAAAP8AAAD/AAAA/wAAAP8AANP/AABf/wAAAP8AAAD/AAAA/wAA
-        AP8AAAD/AAAA/wBDD/8A/zz/AP88/wAAAP8AAAD/AAAA/wAAAP8AAAD/AACr/wAAX/8AAAD/AAAA/wAA
-        AP8AAAD/AAAA/wAAAP8AAAD/AJ8l/wD/PP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAe/8AAFP/AAAA/wAA
-        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAPA/8A0zH/AAAA/wAAAP8AAAD/AAAA/wAAAP8AADf/AAAv/wAA
-        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ACMI/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
-        AP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAKxBAACsQQAArEEAAKxBAACsQQAA
-        rEEAAKxBAACsQQAArEEAAKxBAACsQQAArEEAAKxBAACsQQAArEEAAKxB
-</value>
-  </data>
-  <metadata name="RefreshTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>264, 17</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAICAQAAEABADoAgAAlgAAABAQEAABAAQAKAEAAH4DAAAwMAAAAQAIAKgOAACmBAAAICAAAAEA

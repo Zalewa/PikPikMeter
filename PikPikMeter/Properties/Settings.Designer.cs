@@ -145,5 +145,50 @@ namespace PikPikMeter.Properties
                 this["DisabledNics"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SteelBlue")]
+        public global::System.Drawing.Color WindowBackgroundColor
+        {
+            get
+            {
+                return ((global::System.Drawing.Color)(this["WindowBackgroundColor"]));
+            }
+            set
+            {
+                this["WindowBackgroundColor"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("RoyalBlue")]
+        public global::System.Drawing.Color WindowBorderColor
+        {
+            get
+            {
+                return ((global::System.Drawing.Color)(this["WindowBorderColor"]));
+            }
+            set
+            {
+                this["WindowBorderColor"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color GraphBackgroundColor
+        {
+            get
+            {
+                return ((global::System.Drawing.Color)(this["GraphBackgroundColor"]));
+            }
+            set
+            {
+                this["GraphBackgroundColor"] = value;
+            }
+        }
     }
 }

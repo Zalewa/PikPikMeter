@@ -71,12 +71,20 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppContext.cs" />
     <Compile Include="AskValue.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AskValue.Designer.cs">
       <DependentUpon>AskValue.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsWindow.Designer.cs">
+      <DependentUpon>SettingsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Style.cs" />
     <Compile Include="SystemStart.cs" />
     <Compile Include="TrafficGraphPaint.cs" />
     <Compile Include="History.cs" />
@@ -101,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AskValue.resx">
       <DependentUpon>AskValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsWindow.resx">
+      <DependentUpon>SettingsWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
